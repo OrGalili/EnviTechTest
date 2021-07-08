@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="302*"></ColumnDefinition>
+            <ColumnDefinition Width="95*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label>from date</Label>
+                <DatePicker Grid.Row="1"></DatePicker>
+                <Label Grid.Column="1">till date</Label>
+                <DatePicker Grid.Column="1" Grid.Row="1"></DatePicker>
+                <Label Grid.Column="2">field</Label>
+                <ComboBox Grid.Row="1" Grid.Column="2"></ComboBox>
+                <Label Grid.Column="3">operator</Label>
+                <ComboBox Grid.Row="1" Grid.Column="3"></ComboBox>
+                <Label Grid.Column="4">value</Label>
+                <TextBox Grid.Row="1" Grid.Column="4"></TextBox>
+                <Button Grid.Column="5" Grid.Row="2">show</Button>
+                <Button Grid.Column="6" Grid.Row="2">clear</Button>
+            </Grid>
+        </Grid>
+        <!--table grid below-->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid></DataGrid>
+        </Grid>
+
+
     </Grid>
 </Window>
