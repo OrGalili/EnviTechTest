@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnviTechTest", "EnviTechTest\EnviTechTest.csproj", "{31D9E934-A518-4357-B456-0890D37CD943}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31D9E934-A518-4357-B456-0890D37CD943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D9E934-A518-4357-B456-0890D37CD943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D9E934-A518-4357-B456-0890D37CD943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D9E934-A518-4357-B456-0890D37CD943}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3305FF83-A7FE-4E65-9546-2B2356739C71}
+	EndGlobalSection
+EndGlobal
