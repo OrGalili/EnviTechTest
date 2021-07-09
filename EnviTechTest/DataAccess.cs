@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace EnviTechTest
 {
     class DataAccess
     {
-        static private string connString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=E:\test.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+        static private string connString = Convert.ToString(ConfigurationManager.AppSettings["ConnectionString"]);
         static public DataTable GetDataTable(string strSql, string table_name)
         {
             DataTable dt = new DataTable();
