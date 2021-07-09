@@ -6,23 +6,60 @@ using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EnviTechTest
 {
     class ViewModel:INotifyPropertyChanged
     {
+        private string value;
+        public string Value
+        {
+            get { return value; }
+            set
+            {
+                Regex regex = new Regex("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$");
+                if (regex.IsMatch(value) || value.Length == 0)
+                    this.value = value;
+                OnPropertyChanged();
+            }
+        }
+        private int selectedOperator = -1;
+        public int SelectedOperator
+        {
+            get { return selectedOperator; }
+            set { selectedOperator = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string SelectedOperator { get; set; }
-        public string SelectedValue { get; set; }
+        private int selectedValue = -1;
+        public int SelectedValue
+        {
+            get { return selectedValue; }
+            set { selectedValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         private DataModel data = new DataModel();
 
-        public DataModel Data { get { return data; } set { data = value; } }
+        public DataModel Data
+        {
+            get { return data; }
+            set { data = value;
+                OnPropertyChanged();
+            }
+        }
 
         private OperatorModel _operator = new OperatorModel();
 
-        public OperatorModel Operator { get {return _operator; } set {_operator = value; } }
+        public OperatorModel Operator
+        {
+            get { return _operator; }
+            set { _operator = value; }
+        }
 
         private StatusModel status;
 
@@ -49,6 +86,7 @@ namespace EnviTechTest
             FillValues();
             FillOperators();
             ShowCommand = new DelegateCommand<string>(ShowTable);
+            ClearCommand = new DelegateCommand<string>(clearTable);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -58,11 +96,26 @@ namespace EnviTechTest
 
         public DelegateCommand<string> ShowCommand { get; set; }
 
+        public DelegateCommand<string> ClearCommand { get; set; }
+
         public void ShowTable(string none)
         {
-            DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA", "DATA");
-            Table = dt.DefaultView;
+            if (String.IsNullOrEmpty(value) && selectedValue ==-1 && selectedOperator ==-1 && Data.FromDate==null && Data.TillDate ==null)
+            {
+                DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA", "DATA");
+                Table = dt.DefaultView;
+            }
         }
+        public void clearTable(string none)
+        {
+            Value = "";
+            SelectedValue = -1;
+            SelectedOperator = -1;
+            Data.FromDate = null;
+            Data.TillDate = null;
+            OnPropertyChanged("TillDate");
+        }
+
 
         private void FillValues()
         {
