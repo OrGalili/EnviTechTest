@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -108,6 +109,13 @@ namespace EnviTechTest
             if (String.IsNullOrEmpty(value) && selectedValue ==-1 && selectedOperator ==-1 && Data.FromDate==null && Data.TillDate ==null)
             {
                 DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA", "DATA");
+                Table = dt.DefaultView;
+            }
+            else if (!String.IsNullOrEmpty(value) && selectedValue!=-1 && selectedOperator !=-1 && Data.FromDate!=null && Data.TillDate != null)
+            {
+                string d1 = new DateTime(Data.FromDate.Value.Year, Data.FromDate.Value.Month, Data.FromDate.Value.Day).ToString("yyyy-MM-dd");
+                string d2 = new DateTime(Data.TillDate.Value.Year, Data.TillDate.Value.Month, Data.TillDate.Value.Day).ToString("yyyy-MM-dd");
+                DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA where Value"+(selectedValue+1)+Operator.Name[SelectedOperator]+float.Parse(Value)+" and Date_Time >'" +d1+"' and Date_Time < '"+d2+"'", "DATA");
                 Table = dt.DefaultView;
             }
         }
