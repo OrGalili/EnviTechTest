@@ -108,14 +108,15 @@ namespace EnviTechTest
             
             if (String.IsNullOrEmpty(value) && selectedValue ==-1 && selectedOperator ==-1 && Data.FromDate==null && Data.TillDate ==null)
             {
-                DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA", "DATA");
+                DataTable dt = DataAccess.GetDataTable("SELECT Date_Time"+values+" FROM DATA", "DATA");
                 Table = dt.DefaultView;
             }
             else if (!String.IsNullOrEmpty(value) && selectedValue!=-1 && selectedOperator !=-1 && Data.FromDate!=null && Data.TillDate != null)
             {
                 string d1 = new DateTime(Data.FromDate.Value.Year, Data.FromDate.Value.Month, Data.FromDate.Value.Day).ToString("yyyy-MM-dd");
                 string d2 = new DateTime(Data.TillDate.Value.Year, Data.TillDate.Value.Month, Data.TillDate.Value.Day).ToString("yyyy-MM-dd");
-                DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA where Value"+(selectedValue+1)+Operator.Name[SelectedOperator]+float.Parse(Value)+" and Date_Time >'" +d1+"' and Date_Time < '"+d2+"'", "DATA");
+                
+                DataTable dt = DataAccess.GetDataTable("SELECT Date_Time"+values+" FROM DATA where Value"+(selectedValue+1)+Operator.Name[SelectedOperator]+float.Parse(Value)+" and Date_Time >'" +d1+"' and Date_Time < '"+d2+"'", "DATA");
                 Table = dt.DefaultView;
             }
         }
@@ -129,7 +130,7 @@ namespace EnviTechTest
             OnPropertyChanged("TillDate");
         }
 
-
+        private string values = "";
         private void FillValues()
         {
             object obj = DataAccess.ExecuteScalar("SELECT count(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME like 'value%' and TABLE_NAME = 'DATA'");
@@ -137,10 +138,10 @@ namespace EnviTechTest
             if (obj is int)
                 numberOfValues = int.Parse(obj.ToString());
 
-            for (int i = 0; i < numberOfValues; i++)
+            for (int i = 1; i <= numberOfValues; i++)
             {
-                data.Value.Add("Value" + (i + 1));
-
+                data.Value.Add("Value" + (i));
+                values += ", Value" + i;
             }
         }
 
