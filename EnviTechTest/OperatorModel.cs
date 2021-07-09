@@ -8,6 +8,7 @@ namespace EnviTechTest
 {
     class OperatorModel
     {
-        public List<string> Name { get; set; }
+        private List<string> name = new List<string>();
+        public List<string> Name { get {return name; } set { name = value; } }
     }
 }
