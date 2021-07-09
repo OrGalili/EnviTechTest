@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace EnviTechTest
         public MainWindow()
         {
             InitializeComponent();
+            /*DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA","DATA");
+            DataContext = dt.DefaultView;*/
+            DataContext = new ViewModel();
+
         }
     }
 }
