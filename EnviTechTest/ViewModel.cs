@@ -86,7 +86,7 @@ namespace EnviTechTest
             FillValues();
             FillOperators();
             ShowCommand = new DelegateCommand<string>(ShowTable);
-            ClearCommand = new DelegateCommand<string>(clearTable);
+            ClearCommand = new DelegateCommand<string>(clearControls);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -106,7 +106,7 @@ namespace EnviTechTest
                 Table = dt.DefaultView;
             }
         }
-        public void clearTable(string none)
+        public void clearControls(string none)
         {
             Value = "";
             SelectedValue = -1;
