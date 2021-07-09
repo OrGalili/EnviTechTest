@@ -100,6 +100,11 @@ namespace EnviTechTest
 
         public void ShowTable(string none)
         {
+            if(Table.Table != null)
+            {
+                Table.Table.Rows.Clear();
+            }
+            
             if (String.IsNullOrEmpty(value) && selectedValue ==-1 && selectedOperator ==-1 && Data.FromDate==null && Data.TillDate ==null)
             {
                 DataTable dt = DataAccess.GetDataTable("SELECT * FROM DATA", "DATA");
